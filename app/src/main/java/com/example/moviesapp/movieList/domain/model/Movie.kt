@@ -2,7 +2,7 @@ package com.example.moviesapp.movieList.domain.model
 
 import androidx.room.PrimaryKey
 
-data class MovieEntity(
+data class Movie(
     val id: Int,
     val adult: Boolean,
     val backdrop_path: String,
