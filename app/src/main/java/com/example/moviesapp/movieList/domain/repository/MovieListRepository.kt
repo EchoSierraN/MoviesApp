@@ -11,5 +11,5 @@ interface MovieListRepository {
         page: Int
     ): Flow<Resource<List<Movie>>>
 
-    suspend fun getMovie(id: Int): Resource<Movie>
+    suspend fun getMovie(id: Int): Flow<Resource<Movie>>
 }
