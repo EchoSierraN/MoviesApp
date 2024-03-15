@@ -1,9 +1,8 @@
-package com.example.moviesapp.movieList.data.local
+package com.example.moviesapp.movieList.domain.model
 
 import androidx.room.PrimaryKey
 
 data class MovieEntity(
-    @PrimaryKey
     val id: Int,
     val adult: Boolean,
     val backdrop_path: String,
@@ -20,4 +19,3 @@ data class MovieEntity(
     val vote_count: Int,
     val category: String
 )
-
