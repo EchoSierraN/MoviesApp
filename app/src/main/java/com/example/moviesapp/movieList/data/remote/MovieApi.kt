@@ -9,7 +9,7 @@ interface MovieApi {
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/"
         const val IMAGE_BASE_URL = "https://image.themoviedb.org/t/p/w500"
-        const val API_KEY = "something_something"
+        const val API_KEY = "fd3bf26d5e58aeb9e2abdc8680e4d8c9"
     }
 
     @GET
