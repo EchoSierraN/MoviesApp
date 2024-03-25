@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,12 +36,12 @@ import androidx.compose.ui.unit.sp
 import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImagePainter
-import coil.compose.ImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import com.example.moviesapp.movieList.data.remote.MovieApi
 import com.example.moviesapp.movieList.domain.model.Movie
+import com.example.moviesapp.movieList.util.RatingBar
 import com.example.moviesapp.movieList.util.Screen
 import com.example.moviesapp.movieList.util.getAverageColor
 
@@ -109,16 +110,30 @@ fun MovieItem(
                 contentScale = ContentScale.Crop,
             )
         }
-        
+
         Spacer(modifier = Modifier.height(6.dp))
 
         Text(
-            modifier =  Modifier.padding(start = 26.dp, end = 8.dp),
+            modifier = Modifier.padding(start = 26.dp, end = 8.dp),
             text = movie.title,
             color = Color.White,
             fontSize = 15.sp,
             maxLines = 1,
         )
+
+        RatingBar(
+            starsModifier = Modifier.size(18.dp),
+            rating = movie.vote_average / 2
+        )
+
+        Text(
+            modifier = Modifier.padding(start = 4.dp),
+            text = movie.vote_average.toString().take(3),
+            color = Color.LightGray,
+            fontSize = 14.sp,
+            maxLines = 1,
+        )
+
     }
 }
 
