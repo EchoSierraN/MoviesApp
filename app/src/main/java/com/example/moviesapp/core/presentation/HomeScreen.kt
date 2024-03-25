@@ -36,6 +36,7 @@ import com.example.moviesapp.R
 import com.example.moviesapp.movieList.presentation.MovieListUIEvent
 import com.example.moviesapp.movieList.presentation.MovieListViewModel
 import com.example.moviesapp.movieList.presentation.PopularMoviesScreen
+import com.example.moviesapp.movieList.presentation.UpcomingMoviesScreen
 import com.example.moviesapp.movieList.util.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,7 +87,11 @@ fun HomeScreen(navController: NavHostController) {
                     )
                 }
                 composable(Screen.UpcomingMovieList.rout) {
-//                    UpcomingMoviesScreen()
+                    UpcomingMoviesScreen(
+                        movieListState = movieListState,
+                        navController = navController,
+                        onEvent = movieListViewModel::onEvent
+                    )
                 }
             }
         }
