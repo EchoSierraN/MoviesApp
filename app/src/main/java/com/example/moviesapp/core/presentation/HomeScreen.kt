@@ -1,6 +1,5 @@
 package com.example.moviesapp.core.presentation
 
-import android.util.EventLogTags.Description
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -36,14 +35,14 @@ import androidx.navigation.compose.rememberNavController
 import com.example.moviesapp.R
 import com.example.moviesapp.movieList.presentation.MovieListUIEvent
 import com.example.moviesapp.movieList.presentation.MovieListViewModel
+import com.example.moviesapp.movieList.presentation.PopularMoviesScreen
 import com.example.moviesapp.movieList.util.Screen
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavHostController) {
     val movieListViewModel = hiltViewModel<MovieListViewModel>()
-    val movieState = movieListViewModel.movieListState.collectAsState().value
+    val movieListState = movieListViewModel.movieListState.collectAsState().value
     val bottomNavController = rememberNavController()
 
     Scaffold(
@@ -58,7 +57,7 @@ fun HomeScreen(navController: NavHostController) {
                 title = {
                     Text(
                         text =
-                        if (movieState.isCurrentPopularScreen)
+                        if (movieListState.isCurrentPopularScreen)
                             stringResource(R.string.popular_movies)
                         else
                             stringResource(R.string.upcoming_movies),
@@ -75,9 +74,16 @@ fun HomeScreen(navController: NavHostController) {
                 .fillMaxSize()
                 .padding(it)
         ) {
-            NavHost(navController = bottomNavController, startDestination = Screen.PopularMovieList.rout) {
+            NavHost(
+                navController = bottomNavController,
+                startDestination = Screen.PopularMovieList.rout
+            ) {
                 composable(Screen.PopularMovieList.rout) {
-//                    PopularMoviesScreen()
+                    PopularMoviesScreen(
+                        movieListState = movieListState,
+                        navController = navController,
+                        onEvent = movieListViewModel::onEvent
+                    )
                 }
                 composable(Screen.UpcomingMovieList.rout) {
 //                    UpcomingMoviesScreen()
