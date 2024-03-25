@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -121,18 +122,22 @@ fun MovieItem(
             maxLines = 1,
         )
 
-        RatingBar(
-            starsModifier = Modifier.size(18.dp),
-            rating = movie.vote_average / 2
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(start = 16.dp, bottom = 8.dp, top = 4.dp)
+        ) {
+            RatingBar(
+                starsModifier = Modifier.size(18.dp),
+                rating = movie.vote_average / 2
+            )
 
-        Text(
-            modifier = Modifier.padding(start = 4.dp),
-            text = movie.vote_average.toString().take(3),
-            color = Color.LightGray,
-            fontSize = 14.sp,
-            maxLines = 1,
-        )
+            Text(
+                modifier = Modifier.padding(start = 4.dp),
+                text = movie.vote_average.toString().take(3),
+                color = Color.LightGray,
+                fontSize = 14.sp,
+                maxLines = 1,
+            )
+        }
 
     }
 }
